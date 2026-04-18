@@ -121,7 +121,7 @@ function configure() {
     internal_tool_name=${build_name}-proton
   fi
 
-  local target_arch=x86_64
+  local target_arch=arm64
   if [[ -n $arg_target_arch ]]; then
     target_arch="$arg_target_arch"
   fi
