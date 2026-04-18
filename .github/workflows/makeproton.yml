@@ -13,8 +13,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Set git credentials
+      run: git config --global url.https://${{ secrets.GITHUB_TOKEN }}@github.com/.insteadOf https://github.com/
     - name: Update submodules
-      run: git config --global url."https://${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/" && git submodule update --init --recursive
+      run: git submodule update --init --recursive
     - name: make redistribute build
       run: make redist
     - name: Upload Proton
