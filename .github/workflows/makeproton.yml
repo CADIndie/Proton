@@ -1,0 +1,25 @@
+name: Build Proton-ARM64-Android
+
+on:
+  push:
+    branches: [ "proton_11.0" ]
+  pull_request:
+    branches: [ "proton_11.0" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: configure
+      run: ./configure
+    - name: make redistribute build
+      run: make redist
+    - name: Upload Proton
+      uses: actions/upload-artifact@v4
+      with:
+        name: proton-redist-${{matrix.arch}}
+        path: redist
+    
